@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>Portfolio</title>
+		<title>Transactions</title>
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!-- <link rel="stylesheet" href="assets/css/signinstyle.css" /> -->
@@ -36,7 +36,7 @@
 			}
 
 			.transactions {
-				/* border-right: 1px solid black; */
+				border-right: 1px solid black;
 				min-width: 40%;
 				min-height: 20em;
 				box-sizing: border-box;
@@ -50,6 +50,17 @@
 				justify-content: space-between;
 				padding: 0.8em;
 			}
+
+			.buy__Container {
+				display: flex;
+				flex-direction: column;
+				text-align: center;
+			}
+
+			.buy__Container form {
+				display: flex;
+				flex-direction: column;
+			}
 		</style>
 	</head>
 	<body>
@@ -57,13 +68,21 @@
 			<a href="/portfolio">Portfolio</a> |
 			<a href="/transactions">Transactions</a>
 		</nav>
-		<h2>Transactions</h2>
+		<h2>Portofolio($5943.34)</h2>
 		<div class="portfolio__container">
 			<div class="transactions">
 				<div class="singleTranscation">
 					<p>AAPL - 6 Share</p>
 					<p>$6003.14</p>
 				</div>
+			</div>
+			<div class="buy__Container">
+				<h4>Cash avail - $5000</h4>
+				<form>
+					<input placeholder="Ticker" type="text" />
+					<input placeholder="Qty" type="text" />
+					<input type="submit" />
+				</form>
 			</div>
 		</div>
 	</body>
