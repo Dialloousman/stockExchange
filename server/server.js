@@ -14,6 +14,14 @@ app.get("/register", (req, res) => {
 	res.sendFile(path.resolve(__dirname, "../view/signup.html"));
 });
 
+app.get("/portfolio", (req, res) => {
+	res.sendFile(path.resolve(__dirname, "../view/portfolio.html"));
+});
+
+app.get("/transactions", (req, res) => {
+	res.sendFile(path.resolve(__dirname, "../view/transactions.html"));
+});
+
 app.listen(port, () => {
 	console.log(`app listening at http://localhost:${port}`);
 });
