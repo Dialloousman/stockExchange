@@ -9,12 +9,14 @@ app.use(bodyParser.json());
 const authController = require("./controllers/authController");
 const stocksController = require("./controllers/stocksController");
 
+//--------------------------------------------------serveApp
+
 app.use("/", express.static(path.resolve(__dirname, "../assets")));
 
+//----------------------------------------------------authenticate
 app.get("/signin", (req, res) => {
 	res.status(200).sendFile(path.resolve(__dirname, "../view/signin.html"));
 });
-
 app.post("/authenticate", authController.signin, (req, res) => {
 	const { userFound } = res.locals;
 	if (userFound.isAuthenticated) {
@@ -41,7 +43,7 @@ app.post("/registernewuser", authController.register, (req, res) => {
 app.get("/portfolio", (req, res) => {
 	res.status(200).sendFile(path.resolve(__dirname, "../view/portfolio.html"));
 });
-//----------------------------------------------transactions
+//------------------------------------------------------transactions
 app.get("/transactions", (req, res) => {
 	res
 		.status(200)
@@ -52,6 +54,8 @@ app.post("/updateStocks", stocksController.updateStocksDatabase, (req, res) => {
 	res.status(200).json("stocks refreshed");
 });
 
+
+//-------------------------------------------------------------------
 app.listen(port, () => {
 	console.log(`app listening at http://localhost:${port}`);
 });
