@@ -17,7 +17,7 @@ app.get("/signin", (req, res) => {
 app.post("/authenticate", authController.signin, (req, res) => {
 	const { userFound } = res.locals;
 	// console.log("2. => RES LOCALS [server.js]", res.locals.userFound);
-	if (userFound) {
+	if (userFound.isAuthenticated) {
 		res.status(200).sendFile(path.resolve(__dirname, "../view/transactions.html"));
 		return;
 	}

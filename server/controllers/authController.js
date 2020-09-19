@@ -15,7 +15,6 @@ const users = [
 	},
 ];
 
-
 authController.signin = (req, res, next) => {
 	const { userEmail, userPassword } = req.body;
 
@@ -24,11 +23,13 @@ authController.signin = (req, res, next) => {
 		if (err) {
 			return next(err);
 		}
-        
-        
-		res.locals.userFound = result.rows[0];
+		const user = result.rows[0];
+		res.locals.userFound = {
+			user,
+			isAuthenticated: user.password === userPassword,
+		};
 		return next();
-    });
+	});
 };
 
 authController.register = (req, res, next) => {};
