@@ -1,3 +1,5 @@
+const db = require("../models/UserModel");
+
 const authController = {};
 
 const users = [
@@ -6,30 +8,29 @@ const users = [
 		userPassword: "barbar",
 		name: "Foobaria",
 	},
+	{
+		userEmail: "f@bar.com",
+		userPassword: "bbar",
+		name: "Foobur",
+	},
 ];
 
-function userFoundInDatabase(email, passWord, users) {
-	for (let user of users) {
-		if (user.userEmail === email && user.userPassword === passWord) return true;
-	}
-
-	return false;
-}
 
 authController.signin = (req, res, next) => {
-	// const {userEmail, userPassword} = req.body;
-	// console.log("auth controller hit in [authController.js]");
-	const userEmail = "foo@bar.com";
-	const userPassword = "barbar";
+	const { userEmail, userPassword } = req.body;
 
-	if (userFoundInDatabase(userEmail, userPassword, users)) {
-		res.locals.userFound = true;
-		next();
-		return;
-	}
-	res.locals.userFound = false;
-	next();
+	const query = `SELECT * from users WHERE email='${userEmail}'`;
+	db.query(query, null, (err, result) => {
+		if (err) {
+			return next(err);
+		}
+        
+        
+		res.locals.userFound = result.rows[0];
+		return next();
+    });
 };
+
 authController.register = (req, res, next) => {};
 
 module.exports = authController;
